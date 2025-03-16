@@ -18,7 +18,7 @@ export default function TeamsPage() {
     async function fetchTeams() {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8000/api/teams");
+        const response = await axios.get("http://localhost:8000/api/teams/");
         console.log("API Response:", response.data);
 
         // Check if the data has a teams property
@@ -54,10 +54,6 @@ export default function TeamsPage() {
           <p className="text-gray-500 dark:text-gray-400 text-center max-w-md">
             Preparing your NFL team selection experience...
           </p>
-
-          <div className="mt-6 w-64 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full animate-pulse-width"></div>
-          </div>
         </div>
       </div>
     );
@@ -66,6 +62,30 @@ export default function TeamsPage() {
 
   return (
     <div className="container mx-auto p-6 max-w-7xl">
+      {/* Back button at the top */}
+      <div className="mb-6">
+        <button
+          onClick={() => window.history.back()}
+          className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back
+        </button>
+      </div>
+
       <h1 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
         Select Your Team
       </h1>
