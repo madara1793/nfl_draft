@@ -25,8 +25,14 @@ SECRET_KEY = 'django-insecure-05s$4rt&cd@_4&4ru%n9n7o79olq!stl2rf#1hgl1i$sni=#&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "192.168.142.217"]
+
 CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (for development)
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Next.js local development
+    "http://127.0.0.1:3000",  # Alternative local access
+]
+
 
 
 # Application definition
@@ -38,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'corsheaders',  # CORS middleware
+    'corsheaders',  # CORS middleware
     'rest_framework',  # Django REST Framework
     'nfl_offseason',  # Your app
 ]
@@ -51,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'nflbackend.urls'
@@ -72,6 +79,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'nflbackend.wsgi.application'
+
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS"
+]
 
 
 # Database
@@ -136,6 +153,6 @@ DATABASES = {
 }
 
 # MongoDB Connection
-MONGO_CLIENT = pymongo.MongoClient("mongodb://localhost:27017/")
+MONGO_CLIENT = pymongo.MongoClient("mongodb+srv://brody:kagakunin@cluster.njli8.mongodb.net/")
 MONGO_DB = MONGO_CLIENT["nfl_database"]
 
