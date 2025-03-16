@@ -11,7 +11,8 @@ class Team:
 
     @staticmethod
     def get_all_teams():
-        return list(Team.collection.find({}, {"_id": 0}))  # Exclude _id
+        print('get_all_teams')
+        return list(Team.collection.find({}, {"team_shortform": 1, "_id": 0}))
 
     @staticmethod
     def get_team_by_name(team_shortform):

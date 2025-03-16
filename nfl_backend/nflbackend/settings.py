@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-05s$4rt&cd@_4&4ru%n9n7o79olq!stl2rf#1hgl1i$sni=#&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "192.168.142.217"]
+CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (for development)
 
 
 # Application definition
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',  # CORS middleware
+    # 'corsheaders',  # CORS middleware
     'rest_framework',  # Django REST Framework
     'nfl_offseason',  # Your app
 ]
@@ -138,4 +139,3 @@ DATABASES = {
 MONGO_CLIENT = pymongo.MongoClient("mongodb://localhost:27017/")
 MONGO_DB = MONGO_CLIENT["nfl_database"]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (for development)
